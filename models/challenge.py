@@ -11,3 +11,4 @@ class EventChallengeRequest(BaseModel):
 
 class ChallengeRequest(BaseModel):
     event: Optional[EventChallengeRequest] = None
+    challenge: Optional[str] = None

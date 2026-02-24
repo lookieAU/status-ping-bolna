@@ -12,6 +12,10 @@ logger = logging.getLogger(__name__)
 @router.post("")
 @router.post("/")
 async def challenge_endpoint(request: Request, data: ChallengeRequest = Body(...)):
+    # Verify Slack Webhook
+    if data.challenge is not None:
+        return data.challenge
+
     challenge_service = ChallengeService()
     asyncio.create_task(challenge_service.on_status_update_received(data))
     return {"status": "ok", "message": "Status Change request received"}
