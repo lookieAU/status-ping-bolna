@@ -23,10 +23,12 @@ class ChallengeService:
             #     return
 
             try:
-                normalized_utc_timestamp = datetime.fromtimestamp(float(data.event.ts))
+                normalized_utc_timestamp = datetime.fromtimestamp(
+                    float(data.event.ts)
+                ).isoformat()
             except Exception as e:
                 self.logger.error(f"Error parsing timestamp: {e}")
-                normalized_utc_timestamp = datetime.now(timezone.utc)
+                normalized_utc_timestamp = datetime.now(timezone.utc).isoformat()
 
             # Try to autodetect the LLM provider form the messaege
             llm_provider = self._autodetect_llm_provider(data.event.text)

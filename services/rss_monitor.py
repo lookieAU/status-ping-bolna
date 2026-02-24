@@ -65,7 +65,7 @@ class RSSMonitorService:
     def parse_and_process(self, feed_text: str, feed_url: str):
         feed = feedparser.parse(feed_text)
 
-        for entry in feed.entries:
+        for entry in feed.entries.reverse():
             entry_id = entry.get("id") or entry.get("link")
 
             if entry_id in self.seen_ids:
