@@ -11,4 +11,4 @@ logger = logging.getLogger(__name__)
 async def get_all_statuses():
     status_service = StatusService()
     statuses = await status_service.get_all_statuses()
-    return {"statuses": statuses.reverse()}
+    return {"statuses": list(reversed(statuses))}
